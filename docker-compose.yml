@@ -8,10 +8,10 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_DATABASE="testdb"
-      - MYSQL_USER="root"
-      - MYSQL_PASSWORD="pass"
-      - MYSQL_ROOT_PASSWORD="pass"
+      - MYSQL_DATABASE=testdb
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass
+      - MYSQL_ROOT_PASSWORD=pass
       - TZ=Asia/Tokyo
   backend:
     build:
@@ -27,6 +27,8 @@ services:
     environment:
       TZ: Asia/Tokyo
     depends_on:
+      - db
+    links:
       - db
   frontend:
     build:
