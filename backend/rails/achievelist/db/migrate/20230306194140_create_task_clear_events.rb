@@ -1,4 +1,4 @@
-class CreateTaskClearEvent < ActiveRecord::Migration[7.0]
+class CreateTaskClearEvents < ActiveRecord::Migration[7.0]
   def change
     create_table :task_clear_events do |t|
       t.references :task, foreign_key: true

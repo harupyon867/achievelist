@@ -1,0 +1,2 @@
+class ClearedTask < ApplicationRecord
+end

@@ -1,4 +1,4 @@
-class CreateClearedTask < ActiveRecord::Migration[7.0]
+class CreateClearedTasks < ActiveRecord::Migration[7.0]
   def change
     create_table :cleared_tasks do |t|
       t.references :user, foreign_key: true
