@@ -25,7 +25,10 @@ module Api
         limit = params[:limit]
         priority = params[:priority]
 
-        task = Task.new({ name:, limit:, priority: })
+        # TODO: JWTから取得
+        user_id = '1'
+
+        task = Task.new({ user_id:, name:, limit:, priority: })
 
         result =
           if !task.valid?

@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  validates :user_id, numericality: true
   validates :name, length: { minimum: 1, maximum: 200 }
   validates :priority, inclusion: {
     in: %w[HIGH MIDDLE LOW)],
