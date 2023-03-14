@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :tasks
       resources :users
       resources :login
+      post '/tasks/clear/:id', to: 'tasks#clear'
     end
   end
 end

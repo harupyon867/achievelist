@@ -88,6 +88,23 @@ module Api
         end
         render json: result.fetch(:body), status: result.fetch(:status) unless result.nil?
       end
+
+      # タスク解消API
+      def clear
+        task_id = params[:id]
+
+        # TODO: JWTから取得
+        user_id = '1'
+
+        result =
+          if !TaskClearEvent.task_clear(task_id, user_id)
+            ResponseGenerator.db_error
+          else
+            ResponseGenerator.success
+          end
+
+        render json: result.fetch(:body), status: result.fetch(:status) unless result.nil?
+      end
     end
   end
 end
