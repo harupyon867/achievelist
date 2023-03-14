@@ -1,6 +1,6 @@
 MethodLength:
   CountComments: true
-  Max: 20
+  Max: 25
 Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
