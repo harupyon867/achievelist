@@ -23,5 +23,16 @@ module Achievelist
 
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
+
+    config.middleware.use ActionDispatch::Cookies
+
+    # 独自設定
+    config.x.jwt.issuer = 'achievelist'
+    config.x.jwt.expiration_minutes_access = '120'
+    config.x.jwt.expiration_minutes_refresh = '1440'
+
+    config.x.base_dir = '/achievelist/'
+    config.x.filepath_private_key = "#{config.x.base_dir}.ssh/id_rsa"
+    config.x.filepath_public_key = "#{config.x.base_dir}.ssh/id_rsa.public"
   end
 end

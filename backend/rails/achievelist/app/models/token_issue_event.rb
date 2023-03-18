@@ -1,0 +1,2 @@
+class TokenIssueEvent < ApplicationRecord
+end

@@ -6,4 +6,4 @@ Documentation:
 Style/FrozenStringLiteralComment:
   Enabled: false
 Metrics/AbcSize:
-  Max: 25
+  Max: 35
