@@ -5,8 +5,12 @@ module Api
       def show
         id_param = params[:id]
 
-        # TODO: JWTから取得
-        user_id = '1'
+        authed_data = authenticate
+        unless authed_data.is_a?(String)
+          return render json: authed_data.fetch(:body), status: authed_data.fetch(:status)
+        end
+
+        user_id = authed_data
 
         result =
           if id_param != user_id
@@ -41,8 +45,12 @@ module Api
         id_param = params[:id]
         updates = params.permit(:name, :mail_address)
 
-        # TODO: JWTから取得
-        user_id = '1'
+        authed_data = authenticate
+        unless authed_data.is_a?(String)
+          return render json: authed_data.fetch(:body), status: authed_data.fetch(:status)
+        end
+
+        user_id = authed_data
 
         user = User.find(user_id)
 

@@ -5,8 +5,12 @@ module Api
       def index
         cleared = params[:cleared].to_bool
 
-        # TODO: JWTから取得
-        user_id = '1'
+        authed_data = authenticate
+        unless authed_data.is_a?(String)
+          return render json: authed_data.fetch(:body), status: authed_data.fetch(:status)
+        end
+
+        user_id = authed_data
 
         result =
           if cleared == true
@@ -26,8 +30,12 @@ module Api
         limit = params[:limit]
         priority = params[:priority]
 
-        # TODO: JWTから取得
-        user_id = '1'
+        authed_data = authenticate
+        unless authed_data.is_a?(String)
+          return render json: authed_data.fetch(:body), status: authed_data.fetch(:status)
+        end
+
+        user_id = authed_data
 
         task = Task.new({ user_id:, name:, limit:, priority: })
 
@@ -47,8 +55,12 @@ module Api
       def destroy
         task_id = params[:id]
 
-        # TODO: JWTから取得
-        user_id = '1'
+        authed_data = authenticate
+        unless authed_data.is_a?(String)
+          return render json: authed_data.fetch(:body), status: authed_data.fetch(:status)
+        end
+
+        user_id = authed_data
 
         task = Task.find_by(id: task_id, user_id:)
         result =
@@ -68,8 +80,12 @@ module Api
         task_id = params[:id]
         updates = params.permit(:name, :limit, :priority)
 
-        # TODO: JWTから取得
-        user_id = '1'
+        authed_data = authenticate
+        unless authed_data.is_a?(String)
+          return render json: authed_data.fetch(:body), status: authed_data.fetch(:status)
+        end
+
+        user_id = authed_data
 
         task = Task.find_by(id: task_id, user_id:)
 
@@ -93,8 +109,12 @@ module Api
       def clear
         task_id = params[:id]
 
-        # TODO: JWTから取得
-        user_id = '1'
+        authed_data = authenticate
+        unless authed_data.is_a?(String)
+          return render json: authed_data.fetch(:body), status: authed_data.fetch(:status)
+        end
+
+        user_id = authed_data
 
         result =
           if !TaskClearEvent.task_clear(task_id, user_id)

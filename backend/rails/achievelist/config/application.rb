@@ -33,6 +33,6 @@ module Achievelist
 
     config.x.base_dir = '/achievelist/'
     config.x.filepath_private_key = "#{config.x.base_dir}.ssh/id_rsa"
-    config.x.filepath_public_key = "#{config.x.base_dir}.ssh/id_rsa.public"
+    config.x.filepath_public_key = "#{config.x.base_dir}.ssh/id_rsa.pub"
   end
 end

@@ -33,5 +33,24 @@ module TokenHandler
     )
   end
 
-  module_function :generate_access_token, :generate_refresh_token
+  def decode_token(token)
+    config = Achievelist::Application.config.x
+    rsa_public = File.open(config.filepath_public_key, 'r').read
+    public_key = OpenSSL::PKey::RSA.new(rsa_public)
+
+    begin
+      decoded_token = JWT.decode(token, public_key, true, { algorithm: 'RS256' })
+    rescue JWT::VerificationError => e
+      puts e.message
+      Rails.logger.info(e)
+      return false
+    rescue JWT::ExpiredSignature => e
+      Rails.logger.info(e)
+      return false
+    end
+
+    decoded_token
+  end
+
+  module_function :generate_access_token, :generate_refresh_token, :decode_token
 end
